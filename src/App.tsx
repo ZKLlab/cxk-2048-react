@@ -101,14 +101,10 @@ class App extends React.Component {
 
   componentDidMount(): void {
     window.addEventListener('keydown', this._moveK);
-    this.hammer = new Hammer.Manager(this.containerRef.current as EventTarget);
-    this.hammer.add(new Hammer.Swipe({
-      threshold: 1,
-    }));
-    this.hammer.on('swipeup', () => this._moveG(Direction.Up));
-    this.hammer.on('swiperight', () => this._moveG(Direction.Right));
-    this.hammer.on('swipedown', () => this._moveG(Direction.Down));
-    this.hammer.on('swipeleft', () => this._moveG(Direction.Left));
+    this.hammer = new Hammer.Manager(this.containerRef.current as EventTarget, {
+      recognizers: [[Hammer.Pan]],
+    });
+    this.hammer.on('panstart', (event) => this._moveG(event.direction));
     this.soundManager = new SoundManager({
       onPlay: () => {
         this.setState({
@@ -318,6 +314,7 @@ class App extends React.Component {
         });
       },
       onGameOver: () => {
+        this.vibratorManager.vibrateLong();
         this.setState({
           messageVisible: true,
           message: 'game-over',
@@ -365,9 +362,17 @@ class App extends React.Component {
     }
   };
 
-  protected _moveG = (direction: Direction) => {
+  protected _moveG = (direction: number) => {
     if (this.game != null && !this.state.messageVisible) {
-      this.game.move(direction);
+      if (direction === Hammer.DIRECTION_UP) {
+        this.game.move(Direction.Up);
+      } else if (direction === Hammer.DIRECTION_RIGHT) {
+        this.game.move(Direction.Right);
+      } else if (direction === Hammer.DIRECTION_DOWN) {
+        this.game.move(Direction.Down);
+      } else if (direction === Hammer.DIRECTION_LEFT) {
+        this.game.move(Direction.Left);
+      }
     }
   };
 }

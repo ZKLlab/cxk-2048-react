@@ -46,22 +46,6 @@ export default class Game2048 {
         }
       });
     } else {
-      // for (let i = 0; i < 4; i++) {
-      //   for (let j = 0; j < (i === 3 ? 2 : 4); j++) {
-      //     const newTile = new Game2048Tile(i % 2 ? j : 3 - j, i, Math.max(4, Math.pow(2, 16 - i * 4 - j)));
-      //     this._tiles.set(newTile.key, newTile);
-      //   }
-      // }
-      // for (let j = 2; j < 4; j++) {
-      //   const newTile = new Game2048Tile(j, 3, 4);
-      //   this._tiles.set(newTile.key, newTile);
-      // }
-      // for (let i = 0; i < 4; i++) {
-      //   for (let j = 0; j < 4; j++) {
-      //     const newTile = new Game2048Tile(i, j, 2);
-      //     this._tiles.set(newTile.key, newTile);
-      //   }
-      // }
       this.generateTile();
       this.generateTile();
       if (this._options.onStateChanged != null) {
@@ -178,19 +162,9 @@ export default class Game2048 {
     });
     let gameOverFlag = false;
     if (movedFlag) {
-      if (this.generateTile()) {
-        gameOverFlag = true;
-        if (this._options.onGameOver && !winFlag) {
-          this._options.onGameOver();
-        }
-      }
+      gameOverFlag = this.generateTile();
       if (this._options.onUpdate != null) {
         this._options.onUpdate(Array.from(this._tiles.values()));
-      }
-    }
-    if (winFlag) {
-      if (this._options.on2048) {
-        this._options.on2048(gameOverFlag);
       }
     }
     if (scoreAdded && this._options.onScoreAdd != null) {
@@ -198,6 +172,16 @@ export default class Game2048 {
     }
     if (maxTileMerged && this._options.onMaxMerge) {
       this._options.onMaxMerge(maxTileMerged);
+    }
+    if (gameOverFlag) {
+      if (this._options.onGameOver && !winFlag) {
+        this._options.onGameOver();
+      }
+    }
+    if (winFlag) {
+      if (this._options.on2048) {
+        this._options.on2048(gameOverFlag);
+      }
     }
     if (movedFlag && this._options.onStateChanged != null) {
       this._options.onStateChanged(this._getState());
