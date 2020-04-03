@@ -1,0 +1,52 @@
+.actions {
+  position: relative;
+  margin: 1.5rem 2rem;
+}
+
+.actions .hint {
+  font-size: 1.166667rem;
+  line-height: 2.5rem;
+  min-height: 3rem;
+  margin: 0;
+  padding-right: 11.5rem;
+}
+
+.actions .hint strong {
+  white-space: nowrap;
+  border-bottom: 4px solid #bbada0;
+}
+
+.actions .new-game-wrapper {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  float: right;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.actions button {
+  font-family: OpenSans-Semibold, sans-serif;
+  font-size: 1.166667rem;
+  line-height: 3rem;
+  display: inline-block;
+  min-width: 3rem;
+  padding: 0 0.75rem;
+  cursor: pointer;
+  user-select: none;
+  text-align: center;
+  text-decoration: none;
+  color: white;
+  border: none;
+  border-radius: 0.25rem;
+  outline-offset: 1px;
+  background: #8f7a66;
+  touch-action: manipulation;
+}
+
+.actions button.new-game {
+  min-width: 10rem;
+}

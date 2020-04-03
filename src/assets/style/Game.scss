@@ -1,0 +1,263 @@
+@import "helper";
+
+@keyframes tile-appear {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes tile-pulse {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.2);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+.game {
+  position: relative;
+  margin: 1.5rem;
+}
+
+.game-message {
+  position: absolute;
+  z-index: 50;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  cursor: pointer;
+  transition: opacity 0.25s ease-out, transform 0.25s ease-out;
+  text-align: center;
+  background: rgba(250, 248, 239, 0.25);
+  text-shadow: 0 0 0.5rem #faf8ef;
+}
+
+.game-message div {
+  width: 6rem;
+  height: 6rem;
+  margin: 0 0 1rem;
+}
+
+.game-message div.start {
+  background: url("../img/headphone.png") no-repeat no-repeat center center;
+  background-size: 6rem 6rem;
+}
+
+.game-message div.win {
+  background: url("../img/win.png") no-repeat no-repeat center center;
+  background-size: 6rem 6rem;
+}
+
+.game-message div.game-over {
+  background: url("../img/game-over.png") no-repeat no-repeat center center;
+  background-size: 6rem 6rem;
+}
+
+.game-message h2 {
+  font-size: 4rem;
+  line-height: 4rem;
+  margin: 0 0 1rem;
+  padding: 1rem 2rem;
+  border-radius: 1rem;
+  background: rgba(250, 248, 239, 0.6);
+  box-shadow: 0 0.25rem 3rem rgba(250, 248, 239, 0.5);
+  backdrop-filter: blur(1rem);
+}
+
+.game-message p {
+  font-size: 1.25rem;
+  line-height: 1.25rem;
+  z-index: 52;
+  margin: 0 0 4rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.5rem;
+  background: rgba(250, 248, 239, 0.3);
+  backdrop-filter: blur(1rem);
+}
+
+.game-container {
+  position: relative;
+  overflow: hidden;
+  width: 37rem;
+  height: 37rem;
+  transition: filter 0.25s ease-out, opacity 0.25s ease-out, transform 0.25s ease-out;
+  border-radius: 0.5rem;
+  background: #bbada0;
+  touch-action: pinch-zoom !important;
+}
+
+.game-cell {
+  position: absolute;
+  width: 8rem;
+  height: 8rem;
+  border-radius: 0.25rem;
+  background: rgba(238, 228, 218, 0.35);
+}
+
+.game-tile {
+  font-family: OpenSans-Semibold, NotoSansHans-Medium, sans-serif;
+  font-size: 3rem;
+  line-height: 8rem;
+  position: absolute;
+  width: 8rem;
+  height: 8rem;
+  user-select: none;
+  transition: left 0.1s ease-out, top 0.1s ease-out, box-shadow 0.1s ease-in-out;
+  animation: tile-appear;
+  animation-duration: 0.2s;
+  animation-timing-function: ease-out;
+  text-align: center;
+  color: #f9f6f2;
+  border-radius: 0.25rem;
+  background: #3c3a32;
+}
+
+.game-tile .value {
+  font-size: 1rem;
+  line-height: 1rem;
+  position: absolute;
+  top: 0.25rem;
+  left: 0.25rem;
+  transform: scale(0.8);
+  transform-origin: top left;
+  text-shadow: none;
+}
+
+@for $i from 0 through 3 {
+  .pos-i-#{$i} {
+    left: 9rem * $i + 1rem;
+  }
+
+  .pos-j-#{$i} {
+    top: 9rem * $i + 1rem;
+  }
+}
+
+// From: https://github.com/gabrielecirulli/2048/blob/master/style/main.scss
+
+$text-color: #776e65;
+$bright-text-color: #f9f6f2;
+
+$tile-color: #eee4da;
+$tile-gold-color: #edc22e;
+$tile-gold-glow-color: lighten($tile-gold-color, 15%);
+
+$base: 2;
+$exponent: 1;
+$limit: 11;
+
+// Colors for all 11 states, false = no special color
+$special-colors-fontsize: false false 1.75rem, // 2
+false false 2rem, // 4
+#f78e48 true 1.5rem, // 8
+#fc5e2e true 1.5rem, // 16
+#ff3333 true 1.25rem, // 32
+#ff0000 true 2rem, // 64
+false true 2rem, // 128
+false true 3rem, // 256
+false true 3rem, // 512
+false true 2rem, // 1024
+false true 2rem; // 2048
+
+// Build tile colors
+@while $exponent <= $limit {
+  $power: pow($base, $exponent);
+
+  &.tile-#{$power} {
+    // Calculate base background color
+    $gold-percent: ($exponent - 1) / ($limit - 1) * 100;
+    $mixed-background: mix($tile-gold-color, $tile-color, $gold-percent);
+
+    $nth-color-fontsize: nth($special-colors-fontsize, $exponent);
+
+    $special-background: nth($nth-color-fontsize, 1);
+    $bright-color: nth($nth-color-fontsize, 2);
+    $font-size: nth($nth-color-fontsize, 3);
+
+    @if $special-background {
+      $mixed-background: mix($special-background, $mixed-background, 55%);
+    }
+
+    @if $bright-color {
+      color: $bright-text-color;
+    }
+
+    @if not $bright-color {
+      color: $text-color;
+    }
+
+    // Set background
+    background: $mixed-background;
+
+    // Add glow
+    $glow-opacity: max($exponent - 4, 0) / ($limit - 4);
+
+    @if not $special-background {
+      box-shadow: 0 0 30px 10px rgba($tile-gold-glow-color, $glow-opacity / 1.8),
+      inset 0 0 0 1px rgba(white, $glow-opacity / 3);
+    }
+
+    font-size: $font-size;
+    z-index: $exponent + 1;
+  }
+
+  $exponent: $exponent + 1;
+}
+
+@for $exponent from 12 to 30 {
+  $power: pow($base, $exponent);
+
+  .tile-#{$power} {
+    z-index: $exponent + 1;
+    text-shadow: 0.1rem 0 0.25rem white, 0 0.1rem 0.25rem white, -0.1rem 0 0.25rem white, 0 -0.1rem 0.25rem white;
+  }
+
+}
+
+.tile-overlaid {
+  box-shadow: none;
+}
+
+.tile-pulse {
+  animation: tile-pulse;
+  animation-duration: 0.15s;
+  animation-timing-function: ease-in-out;
+}
+
+.game.has-message .game-container {
+  transform: scale(0.95);
+  filter: grayscale(0.25) blur(0.25rem);
+}
+
+.game:not(.has-message) .game-message {
+  user-select: none;
+  transform: scale(1.1);
+  pointer-events: none;
+  opacity: 0;
+}
+
+@media screen and (max-width: 479px) and (max-aspect-ratio: 6/10) {
+  .game {
+    position: absolute;
+    top: vh(50);
+    transition: top 0.2s;
+    transform: translateY(-20rem);
+  }
+}

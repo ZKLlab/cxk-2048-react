@@ -1,0 +1,13 @@
+@font-face {
+  font-family: "NotoSansHans-Medium";
+  src: url("NotoSansHans-Medium.eot");
+  src: url("NotoSansHans-Medium.eot?#iefix") format("embedded-opentype"),
+  url("NotoSansHans-Medium.woff") format("woff"),
+  url("NotoSansHans-Medium.ttf") format("truetype"),
+  url("NotoSansHans-Medium.svg#NotoSansHans-Medium") format("svg");
+  font-style: normal;
+  font-weight: normal;
+  font-display: block;
+}
+
+

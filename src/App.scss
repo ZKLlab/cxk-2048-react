@@ -1,0 +1,26 @@
+@import "assets/style/helper";
+@import "assets/style/Header";
+@import "assets/style/Actions";
+@import "assets/style/Game";
+@import "assets/style/Introduction";
+
+.app {
+  position: relative;
+  width: 40rem;
+  margin: 0 auto;
+  transition: min-height 0.2s;
+}
+
+.about {
+  width: 40rem;
+  margin: 0 auto 0;
+  padding-top: 0.5rem;
+  padding-bottom: 3rem;
+  border-top: 1px solid #d8d4d0;
+}
+
+@media screen and (max-width: 479px) and (max-aspect-ratio: 6/10) {
+  .app {
+    min-height: vh(100);
+  }
+}

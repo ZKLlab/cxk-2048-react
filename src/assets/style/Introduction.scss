@@ -1,0 +1,80 @@
+.introduction {
+  font-size: 16px;
+  line-height: 2;
+  margin: 1.5rem 3rem 0;
+  padding: 0 0 1.5rem;
+}
+
+.introduction .how-to {
+  margin: 0 0 12px;
+  text-align: center;
+}
+
+.introduction .about-arrow {
+  font-size: 12px;
+  position: relative;
+  display: inline-block;
+  margin-top: 0.5em;
+  color: rgba(187, 173, 160, 0.5);
+}
+
+.introduction .about-arrow:after {
+  position: absolute;
+  top: 100%;
+  right: 50%;
+  left: 50%;
+  overflow: hidden;
+  box-sizing: content-box;
+  width: 0;
+  height: 0;
+  content: " ";
+  transform: translateX(-50%);
+  border-top: 0.5em solid;
+  border-right: 1.5em solid transparent;
+  border-bottom: 0.5em solid transparent;
+  border-left: 1.5em solid transparent;
+}
+
+.introduction p {
+  text-align: justify;
+}
+
+.introduction p.social-buttons {
+  text-align: center;
+}
+
+.introduction p.social-buttons a {
+  color: transparent;
+}
+
+.introduction p.social-buttons > span:not(:first-of-type) {
+  margin-left: 0.5em;
+}
+
+.introduction p.view-on-github {
+  line-height: 16px;
+  text-align: center;
+}
+
+.introduction p.view-on-github .github-icon {
+  width: 16px;
+  height: 16px;
+  margin-right: 0.5em;
+  vertical-align: text-bottom;
+  fill: #776e65;
+}
+
+.introduction .copyright {
+  font-size: 13px;
+  text-align: center;
+}
+
+@media screen and (max-width: 479px) and (max-aspect-ratio: 6/10) {
+  .introduction .how-to {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: 1.5rem 3rem 3rem;
+  }
+}
