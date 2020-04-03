@@ -276,7 +276,7 @@ class App extends React.Component {
       messageVisible: false,
     } : {}));
     // @ts-ignore
-    window.gtag('event', 'resume', {
+    window.gtag('event', 'resume_game', {
       score: score,
       best: best,
     });
