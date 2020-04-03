@@ -243,8 +243,8 @@ class App extends React.Component {
                 View on Github</a>
             </p>
             <div className="copyright">
-              Copyright &copy; {new Date().getFullYear()} <a href="https://github.com/ZKLlab/cxk-2048-react"
-                                                             target="_blank" rel="noopener noreferrer">ZKLlab</a>
+              Copyright &copy; {new Date().getFullYear()} <a href="https://github.com/ZKLlab" target="_blank"
+                                                             rel="noopener noreferrer">ZKLlab</a>
             </div>
           </section>
         </div>
