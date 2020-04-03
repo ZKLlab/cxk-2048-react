@@ -266,6 +266,8 @@ class App extends React.Component {
       score: 0,
       messageVisible: false,
     });
+    // @ts-ignore
+    window.gtag('event', 'new_game');
   };
 
   protected _tryResumeGame = () => {
@@ -312,6 +314,12 @@ class App extends React.Component {
           messageVisible: true,
           message: gameOver ? 'win-game-over' : 'win',
         });
+        // @ts-ignore
+        window.gtag('event', 'win');
+        if (gameOver) {
+          // @ts-ignore
+          window.gtag('event', 'game_over');
+        }
       },
       onGameOver: () => {
         this.vibratorManager.vibrateLong();
@@ -319,6 +327,8 @@ class App extends React.Component {
           messageVisible: true,
           message: 'game-over',
         });
+        // @ts-ignore
+        window.gtag('event', 'game_over');
       },
       onStateChanged: newState => {
         this.stateManager.setState({

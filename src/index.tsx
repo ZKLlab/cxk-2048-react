@@ -8,6 +8,9 @@ function setDocHeight() {
   document.documentElement.style.setProperty('--vh', `${window.innerHeight / 100}px`);
 }
 
+// @ts-ignore
+window.gtag = window.gtag || (() => undefined);
+
 window.addEventListener('resize', setDocHeight);
 window.addEventListener('orientationchange', setDocHeight);
 setDocHeight();
