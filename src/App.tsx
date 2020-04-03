@@ -278,6 +278,11 @@ class App extends React.Component {
     }, game != null ? {
       messageVisible: false,
     } : {}));
+    // @ts-ignore
+    window.gtag('event', 'resume', {
+      score: score,
+      best: best,
+    });
     if (game != null) {
       this._createGame(game);
     }
@@ -318,7 +323,10 @@ class App extends React.Component {
         window.gtag('event', 'win');
         if (gameOver) {
           // @ts-ignore
-          window.gtag('event', 'game_over');
+          window.gtag('event', 'game_over', {
+            score: this.state.score,
+            best: this.state.best,
+          });
         }
       },
       onGameOver: () => {
@@ -328,7 +336,10 @@ class App extends React.Component {
           message: 'game-over',
         });
         // @ts-ignore
-        window.gtag('event', 'game_over');
+        window.gtag('event', 'game_over', {
+          score: this.state.score,
+          best: this.state.best,
+        });
       },
       onStateChanged: newState => {
         this.stateManager.setState({
