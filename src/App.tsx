@@ -123,10 +123,7 @@ class App extends React.Component {
   componentWillUnmount(): void {
     window.removeEventListener('keydown', this._moveK);
     if (this.hammer) {
-      this.hammer.off('swipeup');
-      this.hammer.off('swiperight');
-      this.hammer.off('swipedown');
-      this.hammer.off('swipeleft');
+      this.hammer.off('panstart');
     }
   }
 
