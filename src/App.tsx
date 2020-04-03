@@ -275,12 +275,12 @@ class App extends React.Component {
     }, game != null ? {
       messageVisible: false,
     } : {}));
-    // @ts-ignore
-    window.gtag('event', 'resume_game', {
-      score: score,
-      best: best,
-    });
     if (game != null) {
+      // @ts-ignore
+      window.gtag('event', 'resume_game', {
+        score: score,
+        best: best,
+      });
       this._createGame(game);
     }
   };
