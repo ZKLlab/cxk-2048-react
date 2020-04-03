@@ -1,0 +1,23 @@
+{
+  "name": "\u9e21\u4f60\u592a\u7f8e",
+  "short_name": "\u9e21\u4f60\u592a\u7f8e",
+  "icons": [
+    {
+      "src": "/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "start_url": ".",
+  "lang": "zh-Hans-CN",
+  "theme_color": "#faf8ef",
+  "background_color": "#faf8ef",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait"
+}

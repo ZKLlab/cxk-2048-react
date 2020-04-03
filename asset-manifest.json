@@ -1,0 +1,36 @@
+{
+  "files": {
+    "main.css": "/static/css/main.d541e16d.chunk.css",
+    "main.js": "/static/js/main.a0b0877c.chunk.js",
+    "main.js.map": "/static/js/main.a0b0877c.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.d48d4c86.js",
+    "runtime-main.js.map": "/static/js/runtime-main.d48d4c86.js.map",
+    "static/js/2.38403245.chunk.js": "/static/js/2.38403245.chunk.js",
+    "static/js/2.38403245.chunk.js.map": "/static/js/2.38403245.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.a196ccbaa32de56c2804a487519679a4.js": "/precache-manifest.a196ccbaa32de56c2804a487519679a4.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/main.d541e16d.chunk.css.map": "/static/css/main.d541e16d.chunk.css.map",
+    "static/js/2.38403245.chunk.js.LICENSE.txt": "/static/js/2.38403245.chunk.js.LICENSE.txt",
+    "static/media/index.scss": "/static/media/OpenSans-Semibold.59d1fe1e.woff2",
+    "static/media/effect-1024.mp3": "/static/media/effect-1024.a0467517.mp3",
+    "static/media/effect-128.mp3": "/static/media/effect-128.7d9cd61e.mp3",
+    "static/media/effect-16.mp3": "/static/media/effect-16.0953911a.mp3",
+    "static/media/effect-2.mp3": "/static/media/effect-2.4853522c.mp3",
+    "static/media/effect-2048.mp3": "/static/media/effect-2048.cbd9f9d4.mp3",
+    "static/media/effect-256.mp3": "/static/media/effect-256.7e6f0524.mp3",
+    "static/media/effect-32.mp3": "/static/media/effect-32.a702a9c8.mp3",
+    "static/media/effect-4.mp3": "/static/media/effect-4.2c69c693.mp3",
+    "static/media/effect-4096.mp3": "/static/media/effect-4096.e0a903fa.mp3",
+    "static/media/effect-512.mp3": "/static/media/effect-512.15364d6c.mp3",
+    "static/media/effect-64.mp3": "/static/media/effect-64.ef7ffd6a.mp3",
+    "static/media/effect-8.mp3": "/static/media/effect-8.757f5d76.mp3",
+    "static/media/App.scss": "/static/media/win.b02ed402.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.d48d4c86.js",
+    "static/js/2.38403245.chunk.js",
+    "static/css/main.d541e16d.chunk.css",
+    "static/js/main.a0b0877c.chunk.js"
+  ]
+}
