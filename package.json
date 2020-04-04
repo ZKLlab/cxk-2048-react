@@ -13,7 +13,6 @@
   },
   "homepage": "https://jntm.zkllab.com",
   "dependencies": {
-    "gh-pages": "^2.2.0",
     "hammerjs": "^2.0.8",
     "howler": "^2.1.3",
     "normalize.css": "^8.0.1",
@@ -49,6 +48,7 @@
     "@types/node": "^12.0.0",
     "@types/react": "^16.9.0",
     "@types/react-dom": "^16.9.0",
+    "gh-pages": "^2.2.0",
     "node-sass": "^4.13.1",
     "typescript": "~3.7.2"
   }
