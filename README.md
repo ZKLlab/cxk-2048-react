@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://xk2.zkllab.com/">
+  <a href="https://jntm.zkllab.com/">
     <img width="240px" src="https://jntm.zkllab.com/readme-logo.svg" alt="鸡你太美" />
   </a>
 </p>
