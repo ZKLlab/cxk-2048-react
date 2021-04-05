@@ -36,10 +36,17 @@
 }
 
 .introduction p {
+  margin: 1em 0;
   text-align: justify;
 }
 
+.introduction p.small {
+  font-size: 13px;
+  opacity: 0.75;
+}
+
 .introduction p.social-buttons {
+  margin-top: 2em;
   text-align: center;
 }
 

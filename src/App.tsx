@@ -1,19 +1,20 @@
+import Hammer from 'hammerjs';
 import React from 'react';
 import GitHubButton from 'react-github-btn';
-import Hammer from 'hammerjs';
 import './App.scss';
-import Game2048, {Direction, Game2048Tile} from './lib/Game2048';
+import Game2048, { Direction, Game2048Tile } from './lib/Game2048';
 import SoundManager from './lib/SoundManager';
-import VibratorManager from './lib/VibratorManager';
 import StateManager from './lib/StateManager';
+import VibratorManager from './lib/VibratorManager';
+
 
 const getText = (value: number) => {
   const words = [
     '大家好', '我是', '练习时长', '两年半的', // 2, 4, 8, 16
     '个人练习生', 'CXK', '喜欢', '唱', // 32, 64, 128, 256
-    '跳', 'RAP', '篮球', '🎵', // 512, 1024, 2048, 4096
-    '😶', '😳', '😨', '😰', // 8192, 16384, 32768, 65536
-    '😱', '👽', // 131072, undefined
+    '跳', 'RAP', '篮球', 'MUSIC', // 512, 1024, 2048, 4096
+    '鸡', '你', '太', '美', // 8192, 16384, 32768, 65536
+    'BABY', 'OH~', // 131072, undefined
   ];
   return words[Math.min(Math.log2(value), words.length) - 1];
 };
@@ -60,8 +61,8 @@ class Tile extends React.Component<TileProps> {
   }
 
   render() {
-    const {i, j, overlaid} = this.props;
-    const {value} = this.state;
+    const { i, j, overlaid } = this.props;
+    const { value } = this.state;
     let className = `game-tile pos-i-${i} pos-j-${j} tile-${value}`;
     overlaid && (className += ' tile-overlaid');
     this.state.pulse && (className += ' tile-pulse');
@@ -161,7 +162,7 @@ class App extends React.Component {
                 <span className={`game-cell pos-i-${i} pos-j-${j}`} key={`${i}-${j}`} />,
               ))
             }{
-              this.state.tiles.map(({i, j, value, key, overlaid}) =>
+              this.state.tiles.map(({ i, j, value, key, overlaid }) =>
                 <Tile i={i} j={j} value={value} key={key} overlaid={overlaid} />,
               )
             }</div>
@@ -210,20 +211,18 @@ class App extends React.Component {
         <div className="about">
           <section className="introduction">
             <p>
-              此项目为 Qt 项目 <a href="https://github.com/ZKLlab/cxk-2048-cpp" target="_blank"
-                            rel="noopener noreferrer">2018-2019 学年夏季学期《计算机编程实训》第 17 组作业</a> 的原型，最初用 Vue.js 编写，现经 React +
-              TypeScript 重写，加入了移动端支持、最高分、游戏状态保存以及一些特效。
-            </p>
-            <p>
-              游戏中加入了特别的文字和音效，出自年轻人喜闻乐见的个人练习生XXX语录（没错，课程报告里差不多就是这样写的）。如果你认为坤坤魔性的声音对你造成了精神污染：……嘿嘿，你打不着我！
-            </p>
-            <p>
+              游戏中加入了特别的文字和音效，出自年轻人喜闻乐见的个人练习生。
               <a href="https://play2048.co/" target="_blank" rel="noopener noreferrer">原始版本的 2048</a> 游戏作者 <a
               href="https://gabrielecirulli.com/" target="_blank" rel="noopener noreferrer">Gabriele
               Cirulli</a> ，此项目的游戏方式和样式均来自此处。
             </p>
             <p>
               如果觉得好玩，不妨点一下 Follow 和 Star ～
+            </p>
+            <p className="small">
+              此项目为 Qt 项目 <a href="https://github.com/ZKLlab/cxk-2048-cpp" target="_blank"
+                            rel="noopener noreferrer">2018-2019 学年夏季学期《计算机编程实训》第 17 组作业</a> 的原型，最初用 Vue.js 编写，当前为
+              React + TypeScript 重写版本，加入了移动端支持、最高分、游戏状态保存以及一些特效。
             </p>
             <p className="social-buttons">
               <GitHubButton href="https://github.com/ZKLlab" data-size="large" data-show-count={true}
@@ -268,7 +267,7 @@ class App extends React.Component {
   };
 
   protected _tryResumeGame = () => {
-    const {best, score, game} = this.stateManager.getState();
+    const { best, score, game } = this.stateManager.getState();
     this.setState(Object.assign({
       best,
       score,
@@ -289,7 +288,7 @@ class App extends React.Component {
     let firstUpdate = true;
     this.game = new Game2048({
       onUpdate: tiles => {
-        this.setState({tiles});
+        this.setState({ tiles });
         if (!firstUpdate || state == null) {
           this.vibratorManager.vibrateShort(1);
         }

@@ -114,7 +114,7 @@
 
 .game-tile {
   font-family: OpenSans-Semibold, NotoSansHans-Medium, sans-serif;
-  font-size: 3rem;
+  font-size: 2rem;
   line-height: 8rem;
   position: absolute;
   width: 8rem;
@@ -162,9 +162,9 @@ $tile-gold-glow-color: lighten($tile-gold-color, 15%);
 
 $base: 2;
 $exponent: 1;
-$limit: 11;
+$limit: 17;
 
-// Colors for all 11 states, false = no special color
+// Colors for all 17 states, false = no special color
 $special-colors-fontsize: false false 1.75rem, // 2
 false false 2rem, // 4
 #f78e48 true 1.5rem, // 8
@@ -175,7 +175,13 @@ false true 2rem, // 128
 false true 3rem, // 256
 false true 3rem, // 512
 false true 2rem, // 1024
-false true 2rem; // 2048
+false true 2rem, // 2048
+false true 1.5rem, // 4096
+false true 3rem, // 8192
+false true 3rem, // 16384
+false true 3rem, // 32768
+false true 3rem, // 65536
+false true 2rem; // 131072
 
 // Build tile colors
 @while $exponent <= $limit {
@@ -183,7 +189,7 @@ false true 2rem; // 2048
 
   &.tile-#{$power} {
     // Calculate base background color
-    $gold-percent: ($exponent - 1) / ($limit - 1) * 100;
+    $gold-percent: min(($exponent - 1) * 10, 100);
     $mixed-background: mix($tile-gold-color, $tile-color, $gold-percent);
 
     $nth-color-fontsize: nth($special-colors-fontsize, $exponent);
@@ -205,7 +211,9 @@ false true 2rem; // 2048
     }
 
     // Set background
-    background: $mixed-background;
+    @if $exponent <= 11 {
+      background: $mixed-background;
+    }
 
     // Add glow
     $glow-opacity: max($exponent - 4, 0) / ($limit - 4);
@@ -222,15 +230,14 @@ false true 2rem; // 2048
   $exponent: $exponent + 1;
 }
 
-@for $exponent from 12 to 30 {
-  $power: pow($base, $exponent);
-
-  .tile-#{$power} {
-    z-index: $exponent + 1;
-    text-shadow: 0.1rem 0 0.25rem white, 0 0.1rem 0.25rem white, -0.1rem 0 0.25rem white, 0 -0.1rem 0.25rem white;
-  }
-
-}
+//@for $exponent from 12 to 30 {
+//  $power: pow($base, $exponent);
+//
+//  .tile-#{$power} {
+//    z-index: $exponent + 1;
+//    text-shadow: 0.1rem 0 0.25rem white, 0 0.1rem 0.25rem white, -0.1rem 0 0.25rem white, 0 -0.1rem 0.25rem white;
+//  }
+//}
 
 .tile-overlaid {
   box-shadow: none;

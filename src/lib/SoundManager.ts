@@ -1,4 +1,5 @@
-import {Howl} from 'howler';
+import { Howl } from 'howler';
+
 
 interface SoundManagerOptions {
   onLoad?: () => void,

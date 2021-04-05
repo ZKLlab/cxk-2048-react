@@ -62,7 +62,7 @@ export default class Game2048 {
     for (let i = 0; i < 16; i++) {
       validPos.add(i);
     }
-    this._tiles.forEach(({i, j}) => {
+    this._tiles.forEach(({ i, j }) => {
       validPos.delete(i * 4 + j);
     });
     const validPosArray = Array.from(validPos);
@@ -78,7 +78,7 @@ export default class Game2048 {
 
   judge(): boolean {
     let flag = true;
-    const {tilesArray} = this._getTopTiles();
+    const { tilesArray } = this._getTopTiles();
     for (let i = 0; flag && i < 4; i++) {
       for (let j = 0; flag && j < 4; j++) {
         if (tilesArray[i * 4 + j] == null ||
@@ -118,7 +118,7 @@ export default class Game2048 {
         diff = [0, 4, 8, 12];
         break;
     }
-    const {tilesArray, toDelete} = this._getTopTiles();
+    const { tilesArray, toDelete } = this._getTopTiles();
     toDelete.forEach((key) => {
       this._tiles.delete(key);
     });
@@ -192,7 +192,7 @@ export default class Game2048 {
     if (!this._gameOver) {
       const result: number[] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
       this._tiles.forEach((tile) => {
-        const {i, j, value, overlaid} = tile;
+        const { i, j, value, overlaid } = tile;
         if (!overlaid) {
           result[i * 4 + j] = Math.log2(value);
         }
@@ -208,7 +208,7 @@ export default class Game2048 {
       [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null];
     const toDeleteKey: string[] = [];
     this._tiles.forEach((tile) => {
-      const {i, j, key, overlaid} = tile;
+      const { i, j, key, overlaid } = tile;
       if (!overlaid) {
         result[i * 4 + j] = tile;
       } else {
